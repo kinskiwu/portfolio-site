@@ -1,0 +1,65 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (in case you decide to use npm for any reason)
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# Cache directories
+.cache/
+
+# If you're using a task runner or bundler, ignore its output
+.grunt/
+.webpack/
+
+# If you're using SASS
+.sass-cache/
+
+# If you're using ESLint
+.eslintcache
+
+# If you're using a code coverage tool
+coverage/
+
+# Ignore any PDF files (for your resume, if you're storing it locally)
+*.pdf
+
+# Ignore any local config files
+config.local.js
+
+# Ignore any personal notes or TODO files
+TODO.md
+NOTES.md
+
+# Ignore any API keys or sensitive information files
+apiKeys.js
+secrets.js
