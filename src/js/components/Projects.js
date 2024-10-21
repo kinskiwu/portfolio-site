@@ -25,7 +25,7 @@ export default class Projects {
         const projectsHTML = this.projects.map(project => this.createProjectElement(project)).join('');
 
         element.innerHTML = `
-            <h1 class="projects-heading">My Projects</h1>
+            <h1 class="projects-heading">Projects</h1>
             <div class="carousel-container">
                 <div class="carousel">
                     ${projectsHTML}

@@ -1,49 +1,49 @@
 import Router from './router.js';
 import Home from './components/Home.js';
-import About from './components/About.js';
-import Projects from './components/Projects.js';
-import Collab from './components/Collab.js';
 import Navigation from './components/Navigation.js';
+import NotFound from './components/NotFound.js';
 
 class App {
     constructor() {
         this.router = new Router();
-        this.navigation = new Navigation();
-        this.routes = [
-            { path: 'home', component: Home, title: 'Home' },
-            { path: 'about', component: About, title: 'About' },
-            { path: 'projects', component: Projects, title: 'Projects' },
-            { path: 'collab', component: Collab, title: 'Collaborate' }
-        ];
     }
 
     init() {
         this.setupRoutes();
-        this.renderNavigation();
+        this.render();
         this.setupEventListeners();
-        this.router.handleRouting();
+        this.router.handleRouting();  // Initial routing
     }
 
     setupRoutes() {
-        this.routes.forEach(route => {
-            this.router.addRoute(route.path, new route.component());
-        });
+        this.router.addRoute('home', new Home());
+        this.router.setNotFoundHandler(new NotFound());
     }
 
-    renderNavigation() {
-        const navElement = this.navigation.render(this.routes);
-        document.body.insertBefore(navElement, document.body.firstChild);
+    render() {
+        const appElement = document.getElementById('app');
+        const navElement = new Navigation().render();
+        const contentElement = document.createElement('main');
+        const footerElement = document.createElement('footer');
+        footerElement.innerHTML = '<p>&copy; 2024 Kinski Wu. All rights reserved.</p>';
+
+        appElement.appendChild(navElement);
+        appElement.appendChild(contentElement);
+        appElement.appendChild(footerElement);
+
+        this.router.setContentElement(contentElement);
     }
 
     setupEventListeners() {
-        window.addEventListener('popstate', () => this.router.handleRouting());
         document.addEventListener('click', (e) => {
             if (e.target.matches('nav a')) {
                 e.preventDefault();
                 const route = e.target.getAttribute('data-route');
-                this.router.navigateTo(route);
+                this.router.navigateTo(`/${route}`);
             }
         });
+
+        this.router.listenForBackNavigation();
     }
 }
 

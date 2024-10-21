@@ -1,19 +1,14 @@
 export default class Navigation {
-    render(routes) {
+    render() {
         const nav = document.createElement('nav');
-        const ul = document.createElement('ul');
+        nav.className = 'main-navigation';
 
-        routes.forEach(route => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = `#${route.path}`;
-            a.textContent = route.title;
-            a.setAttribute('data-route', route.path);
-            li.appendChild(a);
-            ul.appendChild(li);
-        });
-
-        nav.appendChild(ul);
+        nav.innerHTML = `
+            <a href="#home" data-route="home">Home</a>
+            <a href="#about" data-route="home">About</a>
+            <a href="#projects" data-route="home">Projects</a>
+            <a href="#collab" data-route="home">Collaborate</a>
+        `;
         return nav;
     }
 }
